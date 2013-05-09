@@ -38,7 +38,7 @@ public class Service {
 		String rawData = execute(Command.READ_DISC, null);
 		
 		Disc ret = new Disc();
-		ret.setName(name);
+		ret.setName(name == null ? null : name.trim());
 		
 		Title currentTitle = null;
 		for (String line : rawData.toLowerCase().split("\n")) {

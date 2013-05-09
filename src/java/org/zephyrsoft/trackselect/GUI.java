@@ -195,6 +195,8 @@ public class GUI extends JFrame implements LogTarget {
 	}
 	
 	private void presentData() {
+		globalPrefix.setText(currentDisc.getName() + "/");
+		
 		panel.removeAll();
 		
 		GridBagLayout gbl_panel = new GridBagLayout();
