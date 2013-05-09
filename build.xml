@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+	Creates the project's release bundle.
+-->
+<project default="completeBuild" basedir=".">
+
+	<property name="start.dir" value="${basedir}" />
+	<property name="src.java.dir" value="${start.dir}/src/java" />
+	<property name="src.resources.dir" value="${start.dir}/src/resources" />
+	<property name="target.dir" value="${start.dir}/target" />
+	<property name="bin.dir" value="${target.dir}/bin" />
+	<property name="package.dir" value="${target.dir}/package" />
+	<property name="release.jar" value="${package.dir}/trackselect.jar" />
+
+	<target name="completeBuild">
+		<!-- make sure that needed directories exist as expected -->
+		<antcall target="prepare" inheritRefs="true" />
+
+		<!-- compile java source files-->
+		<javac destdir="${bin.dir}" source="1.7" target="1.7" debug="true" includeantruntime="false">
+			<src>
+				<pathelement path="${src.java.dir}" />
+			</src>
+		</javac>
+
+		<!-- build jar file -->
+		<jar basedir="${bin.dir}" destfile="${release.jar}">
+			<manifest>
+				<attribute name="Main-Class" value="org.zephyrsoft.trackselect.Start" />
+				<!-- assuming that everyone starting the jar directly is also in the directory of the jar file: -->
+				<attribute name="Class-Path" value="." />
+				<attribute name="Implementation-Vendor" value="zephyrsoft.org" />
+				<attribute name="Implementation-Title" value="TrackSelect" />
+			</manifest>
+		</jar>
+
+		<!-- copy resources -->
+		<copy todir="${package.dir}">
+			<fileset dir="${src.resources.dir}">
+				<include name="*.properties" />
+				<include name="*.txt" />
+			</fileset>
+		</copy>
+
+		<!-- create scripts for easy startup -->
+		<echo file="${package.dir}/run-trackselect.sh" append="false">#!/bin/sh
+SCRIPT=$$(readlink -f $$0)
+SCRIPTDIR=$$(dirname $$SCRIPT)
+java -jar $$SCRIPTDIR/trackselect.jar
+		</echo>
+		<chmod file="${package.dir}/run-trackselect.sh" perm="a+rx"/>
+
+		<!-- create package for distribution -->
+		<zip destfile="${target.dir}/trackselect.zip">
+			<zipfileset dir="${package.dir}" prefix="trackselect" />
+		</zip>
+	</target>
+
+	<target name="prepare">
+		<mkdir dir="${target.dir}" />
+		<delete includeemptydirs="true">
+			<fileset dir="${target.dir}" includes="**/*" />
+		</delete>
+		<mkdir dir="${bin.dir}" />
+		<delete includeemptydirs="true">
+			<fileset dir="${bin.dir}" includes="**/*" />
+		</delete>
+	</target>
+
+</project>
