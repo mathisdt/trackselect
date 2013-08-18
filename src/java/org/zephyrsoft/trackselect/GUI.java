@@ -1,6 +1,7 @@
 package org.zephyrsoft.trackselect;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -33,6 +34,8 @@ import org.zephyrsoft.trackselect.model.Title;
  * @author Mathis Dirksen-Thedens
  */
 public class GUI extends JFrame implements LogTarget {
+	
+	private static final Color TITLE_COLOR = Color.RED;
 	
 	private static final long serialVersionUID = -2316986129445458114L;
 	
@@ -224,6 +227,9 @@ public class GUI extends JFrame implements LogTarget {
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
 		gbc.gridy = y;
+		if (isTitle) {
+			description.setForeground(TITLE_COLOR);
+		}
 		panel.add(description, gbc);
 		
 		JButton btn = new JButton("Play");
@@ -248,6 +254,9 @@ public class GUI extends JFrame implements LogTarget {
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 2;
 		gbc.gridy = y;
+		if (isTitle) {
+			length.setForeground(TITLE_COLOR);
+		}
 		panel.add(length, gbc);
 		
 		final JCheckBox selected = new JCheckBox();

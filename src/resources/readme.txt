@@ -15,7 +15,9 @@ Yes!
 1. You should check that the tools mentioned in commands.properties are present
    on your system. If not, consult the manual or the internet on how to install
    them. Also feel free to use the tools of your choice, you just have to put
-   the commands inside the mentioned file. They are executed using "sh -c ...".
+   the commands inside the mentioned file. All commands are executed using "sh -c".
+   The long-running commands used to extract the actual data are executed using
+   the prefix configured in "external.process" (in addition to "sh -c").
 
 2. You should also check that any paths in commands.properties are fitted for
    your system.

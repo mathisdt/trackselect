@@ -3,6 +3,7 @@ package org.zephyrsoft.trackselect;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -127,13 +128,28 @@ public class Service {
 		int commandId = nextCommandId.getAndIncrement();
 		StringBuilder ret = new StringBuilder();
 		String commandline = commands.getProperty(command.getPropertyKey());
+		String commandPrefix =
+			command.getCommandPrefix() != null ? commands.getProperty(command.getCommandPrefix()) : null;
+		boolean shouldUsePrefix = commandPrefix != null && !commandPrefix.trim().isEmpty();
 		if (parameters != null) {
 			for (Entry<CommandProperty, String> parameter : parameters.entrySet()) {
 				commandline = commandline.replaceAll("\\$" + parameter.getKey().toString(), parameter.getValue());
 			}
 		}
-		System.out.println("[" + commandId + "] starting " + command + " (" + commandline + ")");
-		ProcessBuilder pb = new ProcessBuilder("sh", "-c", commandline);
+		System.out.println("[" + commandId + "] starting " + command + " (" + commandline + ")"
+			+ (shouldUsePrefix ? " using prefix " + commandPrefix : ""));
+		ProcessBuilder pb = null;
+		if (shouldUsePrefix) {
+			@SuppressWarnings("null")
+			String[] commandPrefixArray = commandPrefix.split(" ");
+			String[] toExecute = Arrays.copyOf(commandPrefixArray, commandPrefixArray.length + 3);
+			toExecute[toExecute.length - 3] = "sh";
+			toExecute[toExecute.length - 2] = "-c";
+			toExecute[toExecute.length - 1] = commandline;
+			pb = new ProcessBuilder(toExecute);
+		} else {
+			pb = new ProcessBuilder("sh", "-c", commandline);
+		}
 		pb.redirectErrorStream(true);
 		
 		try {
