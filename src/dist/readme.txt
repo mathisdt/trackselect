@@ -12,15 +12,17 @@ Is there anything I have to do before I can use the program?
 
 Yes!
 
-1. You should check that the tools mentioned in commands.properties are present
-   on your system. If not, consult the manual or the internet on how to install
-   them. Also feel free to use the tools of your choice, you just have to put
-   the commands inside the mentioned file. All commands are executed using "sh -c".
+1. You should check that the tools mentioned in examples/commands.properties are
+   present on your system. If not, consult the manual or the internet on how to
+   install them. Also feel free to use the tools of your choice, you just have to
+   copy examples/commands.properties to ~/.trackselect/commands.properties and put
+   the commands in it. All commands are executed using "sh -c".
    The long-running commands used to extract the actual data are executed using
    the prefix configured in "external.process" (in addition to "sh -c").
 
-2. You should also check that any paths in commands.properties are fitted for
-   your system.
+2. You should also check that any paths in examples/commands.properties are fitted
+   for your system. If not, you need to copy examples/commands.properties to
+   ~/.trackselect/commands.properties and customize the paths.
 
 
 What effect do the controls on the UI have?
