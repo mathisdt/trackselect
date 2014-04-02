@@ -13,7 +13,7 @@ import java.util.List;
 public class Disc implements Iterable<Title> {
 	
 	private String name;
-	private List<Title> titles = new ArrayList<Title>();
+	private List<Title> titles = new ArrayList<>();
 	
 	public String getName() {
 		return name;

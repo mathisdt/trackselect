@@ -48,7 +48,7 @@ public class GUI extends JFrame implements LogTarget {
 	
 	private Disc currentDisc;
 	
-	private Map<String, JCheckBox> checkboxes = new HashMap<String, JCheckBox>();
+	private Map<String, JCheckBox> checkboxes = new HashMap<>();
 	private JPanel panel;
 	
 	private JScrollPane logScrollPane;

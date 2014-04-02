@@ -14,7 +14,7 @@ public class Title extends Selectable implements Iterable<Chapter> {
 	
 	private String number;
 	private String length;
-	private List<Chapter> chapters = new ArrayList<Chapter>();
+	private List<Chapter> chapters = new ArrayList<>();
 	
 	public String getNumber() {
 		return number;

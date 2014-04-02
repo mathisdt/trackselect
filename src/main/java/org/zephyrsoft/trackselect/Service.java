@@ -82,7 +82,7 @@ public class Service {
 	}
 	
 	public void play(String titleNumber, String chapterNumber) {
-		Map<CommandProperty, String> parameters = new HashMap<CommandProperty, String>();
+		Map<CommandProperty, String> parameters = new HashMap<>();
 		parameters.put(CommandProperty.TITLE, titleNumber);
 		if (chapterNumber == null || chapterNumber.isEmpty()) {
 			executeInBackground(Command.PLAY_TITLE, parameters);
@@ -94,7 +94,7 @@ public class Service {
 	
 	public void extract(final String titleNumber, final String chapterNumber, final String name,
 		final LogTarget logTarget) {
-		final Map<CommandProperty, String> parameters = new HashMap<CommandProperty, String>();
+		final Map<CommandProperty, String> parameters = new HashMap<>();
 		parameters.put(CommandProperty.TITLE, titleNumber);
 		parameters.put(CommandProperty.NAME, name);
 		if (chapterNumber == null || chapterNumber.isEmpty()) {
