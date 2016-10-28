@@ -11,6 +11,8 @@ branches:
   - master
   - "/^v[0-9].*/"
 
+install: true
+
 before_script:
 - export TZ=Europe/Berlin
 
