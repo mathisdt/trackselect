@@ -19,9 +19,9 @@
 	</licenses>
 
 	<scm>
-		<url>https://dev.zephyrsoft.org/svn/projects/trackselect/trunk/</url>
-		<connection>scm:svn:https://dev.zephyrsoft.org/svn/projects/trackselect/trunk/</connection>
-		<developerConnection>scm:svn:https://dev.zephyrsoft.org/svn/projects/trackselect/trunk/</developerConnection>
+		<url>https://github.com/mathisdt/trackselect</url>
+		<connection>scm:git:ssh:git@github.com:mathisdt/trackselect.git</connection>
+		<developerConnection>scm:git:ssh:git@github.com:mathisdt/trackselect.git</developerConnection>
 	</scm>
 
 	<properties>
