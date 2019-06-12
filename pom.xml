@@ -5,11 +5,11 @@
 	<groupId>org.zephyrsoft</groupId>
 	<artifactId>trackselect</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
+
 	<name>TrackSelect</name>
 	<description>select tracks of a DVD or BluRay and copy them</description>
 	<url>http://www.zephyrsoft.org</url>
-	
+
 	<licenses>
 	    <license>
 	        <name>GNU General Public License (GPL), Version 2.0</name>
@@ -25,10 +25,10 @@
 	</scm>
 
 	<properties>
-		<version.java>1.8</version.java>
+		<version.java>11</version.java>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<main.class>org.zephyrsoft.trackselect.Start</main.class>
-		
+
 		<!-- dependency versions -->
 		<version.slf4j>1.7.25</version.slf4j>
 		<version.log4j>2.10.0</version.log4j>
@@ -72,7 +72,7 @@
 		<name>ZephyrSoft</name>
 		<url>http://www.zephyrsoft.org</url>
 	</organization>
-	
+
 	<developers>
 	    <developer>
 	        <id>mathis</id>
@@ -157,7 +157,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -203,7 +203,7 @@
 					</archive>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -292,7 +292,7 @@
 
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
+				<!--This plugin's configuration is used to store Eclipse m2e settings
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
