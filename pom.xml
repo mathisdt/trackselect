@@ -30,9 +30,9 @@
 		<main.class>org.zephyrsoft.trackselect.Start</main.class>
 
 		<!-- dependency versions -->
-		<version.slf4j>1.7.25</version.slf4j>
+		<version.slf4j>1.7.30</version.slf4j>
 		<version.log4j>2.10.0</version.log4j>
-		<version.junit>4.12</version.junit>
+		<version.junit>4.13</version.junit>
 	</properties>
 
 	<dependencies>
@@ -144,7 +144,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
-				<version>1.20</version>
+				<version>2.0.0</version>
 				<configuration>
 					<useMissingFile>true</useMissingFile>
 					<useRepositoryMissingFiles>false</useRepositoryMissingFiles>
@@ -268,7 +268,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>3.2.0</version>
 				<executions>
 					<execution>
 						<id>attach-distribution</id>
