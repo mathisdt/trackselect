@@ -21,31 +21,29 @@ import org.zephyrsoft.trackselect.model.Title;
 
 /**
  * Performs the work, oftentimes by issuing a shell command.
- * 
- * @author Mathis Dirksen-Thedens
  */
 public class Service {
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(Service.class);
-	
+
 	private Properties commands;
 	private AtomicInteger nextCommandId = new AtomicInteger(1);
-	
+
 	ExecutorService executor;
-	
+
 	public Service(Properties commands) {
 		this.commands = commands;
-		
+
 		executor = Executors.newSingleThreadExecutor();
 	}
-	
+
 	public Disc loadDiscData() {
 		String name = execute(Command.READ_NAME, null);
 		String rawData = execute(Command.READ_DISC, null);
-		
+
 		Disc ret = new Disc();
 		ret.setName(name == null ? null : name.trim());
-		
+
 		Title currentTitle = null;
 		for (String line : rawData.toLowerCase().split("\n")) {
 			if (line.startsWith("title")) {
@@ -61,10 +59,10 @@ public class Service {
 				LOG.debug("unknown line type, ignoring: " + line);
 			}
 		}
-		
+
 		return ret;
 	}
-	
+
 	private static Title parseTitle(String line) {
 		Title ret = new Title();
 		String[] parts = line.split(" ");
@@ -72,7 +70,7 @@ public class Service {
 		ret.setLength(parts[2]);
 		return ret;
 	}
-	
+
 	private static Chapter parseChapter(String line) {
 		Chapter ret = new Chapter();
 		String[] parts = line.split(" ");
@@ -80,7 +78,7 @@ public class Service {
 		ret.setLength(parts[2]);
 		return ret;
 	}
-	
+
 	public void play(String titleNumber, String chapterNumber) {
 		Map<CommandProperty, String> parameters = new HashMap<>();
 		parameters.put(CommandProperty.TITLE, titleNumber);
@@ -91,7 +89,7 @@ public class Service {
 			executeInBackground(Command.PLAY_CHAPTER, parameters);
 		}
 	}
-	
+
 	public void extract(final String titleNumber, final String chapterNumber, final String name,
 		final LogTarget logTarget) {
 		final Map<CommandProperty, String> parameters = new HashMap<>();
@@ -119,7 +117,7 @@ public class Service {
 			});
 		}
 	}
-	
+
 	public void cancelAllJobs() {
 		executor.shutdownNow();
 		try {
@@ -128,7 +126,7 @@ public class Service {
 			// ignore
 		}
 	}
-	
+
 	private String execute(final Command command, final Map<CommandProperty, String> parameters) {
 		int commandId = nextCommandId.getAndIncrement();
 		StringBuilder ret = new StringBuilder();
@@ -155,7 +153,7 @@ public class Service {
 			pb = new ProcessBuilder("sh", "-c", commandline);
 		}
 		pb.redirectErrorStream(true);
-		
+
 		try {
 			Process process = pb.start();
 			try {
@@ -178,10 +176,10 @@ public class Service {
 			LOG.info("[" + commandId + "] problem", e);
 		}
 		LOG.info("[" + commandId + "] finished");
-		
+
 		return ret.toString();
 	}
-	
+
 	private void executeInBackground(final Command command, final Map<CommandProperty, String> parameters) {
 		new Thread(new Runnable() {
 			@Override
@@ -190,5 +188,5 @@ public class Service {
 			}
 		}).start();
 	}
-	
+
 }

@@ -3,8 +3,6 @@ package org.zephyrsoft.trackselect;
 /**
  * Represents the available commands that can be executed. Every command uses a shell expression defined in
  * commands.properties.
- *
- * @author Mathis Dirksen-Thedens
  */
 public enum Command {
 
