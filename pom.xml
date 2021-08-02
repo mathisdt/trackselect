@@ -29,7 +29,7 @@
 		<main.class>org.zephyrsoft.trackselect.Start</main.class>
 
 		<!-- dependency versions -->
-		<version.slf4j>1.7.31</version.slf4j>
+		<version.slf4j>1.7.32</version.slf4j>
 		<version.logback>1.2.5</version.logback>
 		<version.junit>4.13.2</version.junit>
 	</properties>
