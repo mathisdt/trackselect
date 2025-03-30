@@ -1,8 +1,7 @@
 # What's this?
 
-With this project, you can put together audio albums. The files can be selected from a Swing UI
-and are moved and renamed appropriately after you are finished with your album. This way you
-can re-assemble albums from your MP3 collection after the metadata got lost.
+With this project, you can extract parts from a video medium (DVD or BluRay) using a GUI.
+In the background, command-line utilities like `lsdvd` and `HandBrakeCLI` do the real work.
 
 # Build using Earthly
 
